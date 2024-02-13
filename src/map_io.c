@@ -68,3 +68,47 @@ int read_map_from_buffer(t_map *map, char *buf, int line_length)
 
     return 0; // No errors
 }
+
+void process_map_file(char *filename)
+{
+    int fd; // File descriptor
+    char buf[g_buff_size];
+    int num_lines;
+
+    fd = open(filename, 0);
+    if (fd == -1) {
+        write(2, "Failed to open file\n", 20);
+        return;
+    }
+    if (read_file_into_buffer(fd, buf) <= 0) {
+        write(2, "Failed to read file\n", 20);
+        return;
+    }
+    num_lines = str_to_int(buf);
+    t_map *map = create_map(num_lines);
+    map->empty_char = buf[1];
+    map->obstacle_char = buf[2];
+    map->filled_char = buf[3];
+
+    map->line_length = calculate_line_length(buf);
+    allocate_map_lines(map, map->line_length);
+    int error = read_map_from_buffer(map, buf, map->line_length);
+    if (error != 0) {
+        write(2, "map error\n", 10);
+        return;
+    }
+
+    close(fd);
+
+    find_largest_square(map);
+    print_map(map);
+
+    // Free the allocated memory
+    int i = 0;
+    while (i < num_lines) {
+        free(map->lines[i]);
+        i++;
+    }
+    free(map->lines);
+    free(map);
+}
