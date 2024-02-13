@@ -6,15 +6,20 @@
 /*   By: sfarren <sfarren@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 10:40:14 by sfarren           #+#    #+#             */
-/*   Updated: 2024/02/13 10:44:22 by sfarren          ###   ########.fr       */
+/*   Updated: 2024/02/13 13:36:17 by sfarren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void	ft_putstr(char *str)
+/**
+ * Prints a string to the standard output followed by a newline character.
+ *
+ * @param str The string to be printed.
+ */
+void ft_putstr(char *str)
 {
-	int	i;
+	int i;
 
 	i = 0;
 	while (str[i] != '\0')
@@ -25,10 +30,16 @@ void	ft_putstr(char *str)
 	write(1, "\n", 1);
 }
 
-int	calculate_line_length(char *buf)
+/**
+ * Calculates the length of a line in a buffer.
+ *
+ * @param buf The buffer containing the line.
+ * @return The length of the line.
+ */
+int calculate_line_length(char *buf)
 {
-	int	i;
-	int	length;
+	int i;
+	int length;
 
 	i = 0;
 	length = 0;
@@ -45,10 +56,16 @@ int	calculate_line_length(char *buf)
 	return (length);
 }
 
-int	str_to_int(char *str)
+/**
+ * Converts a string to an integer.
+ *
+ * @param str The string to be converted.
+ * @return The converted integer value.
+ */
+int str_to_int(char *str)
 {
-	int	result;
-	int	i;
+	int result;
+	int i;
 
 	result = 0;
 	i = 0;
@@ -57,5 +74,5 @@ int	str_to_int(char *str)
 		result = result * 10 + (str[i] - '0');
 		i++;
 	}
-	return (result);
+	return result;
 }

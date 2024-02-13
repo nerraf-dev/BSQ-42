@@ -3,6 +3,11 @@
 #include <stdlib.h>
 #include "map.h"
 
+/**
+ * Finds the largest square in the given map and fills it with the filled character.
+ * 
+ * @param map The map structure containing the map data.
+ */
 void find_largest_square(t_map *map) 
 {
     int **solution;
