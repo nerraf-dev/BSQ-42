@@ -5,98 +5,16 @@
 
 void    ft_putstr(char *str);
 void    find_largest_square(t_map *map);
-
+void allocate_map_lines(t_map *map, int line_length);
+void print_map(t_map *map);
+int calculate_line_length(char *buf);
+int str_to_int(char *str);
 
 int read_file_into_buffer(int fd, char *buf);
 t_map *create_map(int num_lines);
 int read_map_from_buffer(t_map *map, char *buf, int line_length);
 
 
-// void read_map_from_buffer(t_map *map, char *buf, int line_length)
-// {
-//     int line_index;
-//     int char_index;
-//     int i;
-
-//     line_index = 0;
-//     char_index = 0;
-//     i = 0;
-
-//     // Skip the metadata line
-//     while (buf[i] != '\n' && buf[i] != '\0') {
-//         i++;
-//     }
-//     if (buf[i] == '\n') {
-//         i++; // Skip the newline character
-//     }
-
-//     // Copy the map data
-//     while (buf[i] != '\0') {
-//         if (buf[i] == '\n') {
-//             if (line_index < map->num_lines) {
-//                 map->lines[line_index][char_index] = '\0';
-//                 line_index++;
-//                 char_index = 0;
-//             }
-//         } else if (line_index < map->num_lines && char_index < line_length) {
-//             map->lines[line_index][char_index] = buf[i];
-//             char_index++;
-//         }
-//         i++;
-//     }
-// }
-
-int calculate_line_length(char *buf)
-{
-    int i = 0;
-    int length = 0;
-
-    // Skip the metadata line
-    while (buf[i] != '\n' && buf[i] != '\0') {
-        i++;
-    }
-    if (buf[i] == '\n') {
-        i++; // Skip the newline character
-    }
-
-    while (buf[i] != '\n' && buf[i] != '\0') {
-        length++;
-        i++;
-    }
-    return length;
-}
-
-void allocate_map_lines(t_map *map, int line_length)
-{
-    int i = 0;
-    while (i < map->num_lines) {
-        map->lines[i] = (char *)malloc((line_length + 1) * sizeof(char));
-        if (!map->lines[i]) {
-            ft_putstr("Failed to allocate memory for map line");
-            exit(1);
-        }
-        i++;
-    }
-}
-
-void print_map(t_map *map)
-{
-    int i = 0;
-    while (i < map->num_lines) {
-        ft_putstr(map->lines[i]);
-        i++;
-    }
-}
-
-int str_to_int(char *str) {
-    int result = 0;
-    int i = 0;
-    while (str[i] >= '0' && str[i] <= '9') {
-        result = result * 10 + (str[i] - '0');
-        i++;
-    }
-    return result;
-}
 // void find_largest_square(t_map *map);
 
 // void find_largest_square(t_map *map) {
