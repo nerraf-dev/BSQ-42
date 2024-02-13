@@ -1,8 +1,15 @@
 
 #include <unistd.h>
 #include <stdlib.h>
+#include <fcntl.h>
 #include "map.h"
+
 void    ft_putstr(char *str);
+void    print_map(t_map *map);
+int     calculate_line_length(char *buf);
+void    find_largest_square(t_map *map);
+int     str_to_int(char *str);
+void    allocate_map_lines(t_map *map, int line_length);
 
 int read_file_into_buffer(int fd, char *buf)
 {
