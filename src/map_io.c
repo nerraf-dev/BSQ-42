@@ -10,6 +10,7 @@ int     calculate_line_length(char *buf);
 void    find_largest_square(t_map *map);
 int     str_to_int(char *str);
 void    allocate_map_lines(t_map *map, int line_length);
+static const int	g_buff_size = 1024;
 
 int read_file_into_buffer(int fd, char *buf)
 {
