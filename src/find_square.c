@@ -3,7 +3,8 @@
 #include <stdlib.h>
 #include "map.h"
 
-void find_largest_square(t_map *map) {
+void find_largest_square(t_map *map) 
+{
     int **solution;
     int max_x;
     int max_y;
@@ -16,7 +17,6 @@ void find_largest_square(t_map *map) {
     maxSquareSize = 0;
     x = 0;
     y = 0;
-
     // Allocate memory for the auxiliary array
     solution = (int **)malloc(map->num_lines * sizeof(int *));
     while (x < map->num_lines) {
